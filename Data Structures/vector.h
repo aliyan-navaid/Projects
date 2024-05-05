@@ -1,10 +1,12 @@
 #pragma once
+#include <iostream>
 
-#include "iostream"
+namespace DS {
 
-template <typename T> class Vector{
+template <typename T>
+class Vector {
 public:
-    Vector() : capacity{initialCapacity}, size{0}, vector{new T[capacity]} {}
+    Vector() : capacity{ initialCapacity }, size{ 0 }, vector{ new T[capacity] } {}
 
     Vector(const Vector& toCopy) {
         vector = new T[capacity];
@@ -12,7 +14,7 @@ public:
     }
 
     void operator=(const Vector& toCopy) {
-        for (size_t i=0; i<toCopy.getSize(); i++)
+        for (size_t i = 0; i < toCopy.getSize(); i++)
             vector[i] = toCopy[i];
         size = toCopy.getSize();
     }
@@ -21,29 +23,29 @@ public:
         delete[] vector;
     }
 
-    void add(const T &item) {
-        if (size==capacity+1) {
-            resize(capacity*2);
+    void add(const T& item) {
+        if (size == capacity + 1) {
+            resize(capacity * 2);
         }
         vector[size++] = item;
     }
 
-    void remove(const T &item) {
-        T *temp = new T[size-1];
-        for (size_t i=0, j=0; i<getSize(); i++) {
-            if (vector[i]!=item) {
+    void remove(const T& item) {
+        T* temp = new T[size - 1];
+        for (size_t i = 0, j = 0; i < getSize(); i++) {
+            if (vector[i] != item) {
                 temp[j++] = vector[i];
             }
         }
 
         size--;
 
-        delete []vector;
+        delete[] vector;
         vector = temp;
     }
 
     void print() const {
-        for (size_t i=0; i<getSize(); i++) {
+        for (size_t i = 0; i < getSize(); i++) {
             std::cout << vector[i] << " ";
         }
         std::cout << std::endl;
@@ -65,7 +67,6 @@ public:
         return vector[index];
     }
 
-
 private:
     size_t size;
     size_t capacity;
@@ -73,10 +74,9 @@ private:
 
     T* vector;
 
-    void resize(size_t newCapcity)
-    {
-        T* temp = new T[capacity=newCapcity];
-        for (size_t i =0; i<getSize(); ++i) {
+    void resize(size_t newCapacity) {
+        T* temp = new T[capacity = newCapacity];
+        for (size_t i = 0; i < getSize(); ++i) {
             temp[i] = vector[i];
         }
         delete[] vector;
@@ -84,4 +84,7 @@ private:
     }
 };
 
-template <typename T> size_t Vector<T>::initialCapacity = 20;
+} // namespace DS
+
+template <typename T>
+size_t DS::Vector<T>::initialCapacity = 20;
