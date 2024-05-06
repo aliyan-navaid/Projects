@@ -1,7 +1,10 @@
-#pragma once
+#ifndef VECTOR_h
+#define VECTOR_H
+
 #include <iostream>
 
 namespace DS {
+namespace Linear{
 
 template <typename T>
 class Vector {
@@ -83,8 +86,10 @@ private:
         vector = temp;
     }
 };
-
+} // namespace Linear
 } // namespace DS
 
 template <typename T>
-size_t DS::Vector<T>::initialCapacity = 20;
+size_t DS::Linear::Vector<T>::initialCapacity = 20;
+
+#endif /* VECTOR_H */

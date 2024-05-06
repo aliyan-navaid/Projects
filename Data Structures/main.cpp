@@ -1,6 +1,7 @@
-#include "DS.h"
+#include "DS.h" // includes all DS's
+#include "Linear/vector.h" // Alternatively
 
 int main()
 {
-    DS::Container first;
+    DS::Linear::Vector<int> first;
 }
