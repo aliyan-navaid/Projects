@@ -12,6 +12,7 @@ public:
     Vector() : capacity{ initialCapacity }, size{ 0 }, vector{ new T[capacity] } {}
 
     Vector(const Vector& toCopy) {
+        delete vector;
         vector = new T[capacity];
         *this = toCopy;
     }
