@@ -11,7 +11,9 @@ enum class AnimationState
 {
     None,
     Idle,
-    Walk
+    Walk,
+    Jump,
+    Attack
 };
 
 class C_Animation : public Component 

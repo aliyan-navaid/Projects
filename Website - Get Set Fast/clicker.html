@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Moo Says</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            min-height: 100vh;
+            min-width: 100vw;
+            background: radial-gradient(circle, #212121 0%, #000 100%);;
+        }
+        #Box{
+            width:40px;
+            height: 40px;
+            background-color: white;
+        }
+        #score{
+            /*Clear Default Styling*/
+            margin: 0;
+            padding: 0;
+            /*Layout*/
+            position: absolute;
+            top: 90px;
+            left: 100px;
+            
+            /*Make Text Fancy*/
+            font-family: sans-serif;
+            font-size: 80px;
+            color:white;
+        }
+        #time{
+            margin: 0;
+            padding: 0;
+
+            position:absolute;
+            top: 90px;
+            right: 70px;
+
+            color:white;
+            font-size: 80px;
+            font-family: sans-serif;
+        }
+
+        #timetext{
+            margin: 0;
+            padding: 0;
+
+            position:absolute;
+            top: 40px;
+            right: 40px;
+
+            color:white;
+            font-size: 50px;
+            font-family: sans-serif;
+        }
+        #scoretext{
+            margin: 0;
+            padding: 0;
+
+            position:absolute;
+            top: 40px;
+            left: 40px;
+
+            color:white;
+            font-size: 50px;
+            font-family: sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <button id="Box", onclick="BoxFound()"></button>
+        <h1 id="scoretext">SCORE</h1>
+        <h1 id="score">0</h1>
+        <h1 id="timetext">TIME</h1>
+        <h1 id="time">0</h1>
+        <!-- <h1 id="test">score</h1> -->
+    </div>
+
+    <script>
+        var Box = document.getElementById('Box'); //var creates a global variable
+        var Score = document.getElementById("score")
+        var Timer = document.getElementById("time");
+        var Test = document.getElementById("test"); 
+
+        function SetRandomPosition(){
+            randomx = Math.random()*95 //retuns value in interval [0,1)
+            randomy = Math.random()*95
+            
+            Box.style.position = 'absolute';
+            Box.style.top = randomy + 'vh';
+            Box.style.left = randomx + 'vw';    
+        }     
+        SetRandomPosition();
+        
+
+        function BoxFound()
+        {
+            Score.innerHTML = Number(Score.innerHTML)+1;
+            SetRandomPosition();
+        }
+        
+        function TimerIncrement()
+        {
+            Timer.innerHTML = Number(Timer.innerHTML) +1; 
+            if (Number(Timer.innerHTML) == 10){
+                clearInterval(interval);
+                //redirect to moo.html with the score
+                window.location.href = 'moo.html?score=' + Score.innerHTML;//passing the score as a query parameter
+            }   
+        }
+        
+        const interval = setInterval(TimerIncrement, 1000); //setInterval repeatedly calls a functions until cleared
+        
+
+    </script>
+</body>
+</html>

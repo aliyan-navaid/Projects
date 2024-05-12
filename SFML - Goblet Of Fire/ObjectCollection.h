@@ -8,6 +8,7 @@
 class ObjectCollection {
 public:
 	void Add(std::shared_ptr<Object> object);
+	Object* get(int index);
 
 	void update(float dt);
 	void lateUpdate(float dt);

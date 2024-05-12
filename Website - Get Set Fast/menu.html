@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Menu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #212121 0%, #000 100%); /* Black gradient background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .title {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .menu-button {
+            background-color: #20202011;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 1.15em;
+            cursor: pointer;
+            transition: background-color 0.5s, transform 0.6s;
+        }
+
+        .menu-button:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+
+        #credits
+        {   
+            color:black;
+            list-style: none;
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+        }
+
+        #easter
+        {
+            color:black;
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+        }
+
+        #easter:hover, #credits:hover
+        {
+            color: rgb(54, 50, 50);
+        }
+    </style>
+
+    <script>
+        function start()
+        {
+            window.location.href = "clicker.html"   
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="title">GET SET FAST</div>
+    <button class="menu-button" onclick="start()">Start Now</button>
+    <ul id="credits">
+        <li>Aliyan</li>
+        <li>Izaan</li>
+        <li>Farhan</li>
+        <li>Saad</li>
+    </ul>
+    <h3 id="easter">If nothing is going right, go left</h3>
+</div>
+
+
+</body>
+</html>

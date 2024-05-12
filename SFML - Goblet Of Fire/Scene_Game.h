@@ -9,6 +9,7 @@
 #include "ObjectCollection.h"
 #include "ResourceAllocator.h"
 #include "C_KeyboardMovement.h"
+#include "C_Health.h"
 #include "C_Animation.h"
 
 
@@ -29,4 +30,9 @@ private:
 	SceneStateMachine& sceneManager;
 	ObjectCollection objects;
 	ResourceAllocator<sf::Texture>& textureAllocator;
+
+	sf::Texture backgroundTexture;
+	sf::Texture foregroundTexture;
+	sf::Sprite backgroundSprite;
+	sf::Sprite foregroundSprite;
 };

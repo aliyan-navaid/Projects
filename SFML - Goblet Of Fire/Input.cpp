@@ -61,4 +61,8 @@ void Input::update() {
 		(int)Key::MouseLeft,
 		sf::Mouse::isButtonPressed(sf::Mouse::Left)
 	);
+	currentFrameKeys.setBit(
+		(int)Key::F,
+		sf::Keyboard::isKeyPressed(sf::Keyboard::F)
+	);
 }

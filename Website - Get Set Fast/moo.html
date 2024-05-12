@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HTML background music</title>
+  <style>
+    body{
+      background-color: black;
+    }
+    #testObject {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: black; /*Set a background color for visibility*/
+      cursor: pointer;  /*Set cursor to pointer */
+      } 
+   
+
+    #startButton {
+      background-color: #20202011;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1.15em;
+      cursor: pointer;
+      transition: background-color 0.5s, transform 0.6s;
+    }
+
+    #startButton:hover {
+      background-color: #555;
+      transform: scale(1.1);
+    }
+
+  </style>
+</head>
+
+<body>
+  <audio id="backgroundMusic" src="horror.mp3"></audio>
+  <button onclick="play()" id="startButton" style="cursor: pointer;">Start</button>
+  <div id="testObject" onclick="stopMusic()"></div>
+
+  <!-- <body>
+    <audio id="backgroundMusic" src="cow-sound.mpeg"></audio>
+    <button id="startButton" onclick="play()" style="display: none; cursor: pointer;">Start</button>
+    <div id="testObject" onclick="stopMusic()"></div> -->
+
+  <script>
+
+    // Simulate a click on the start button to trigger the game when the page loads
+    // // window.onload = function() {
+    //   var startButtonVariable = document.getElementById("startButton");
+    //   startButtonVariable.click(); // Simulate a click on the start button
+    // // };
+
+    // Function to extract query parameter from URL
+    function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Get the score parameter from the URL
+        var clickerScore = Number(getParameterByName('score'));
+    var startTime;
+
+    function play() {
+      startTime = performance.now();
+      var audio = document.getElementById("backgroundMusic");
+      audio.volume = 0.2;
+      audio.play();
+
+      const testObject = document.getElementById("testObject");
+      testObject.style.left = Math.random() * (window.innerWidth - 100) + "px";
+      testObject.style.top = Math.random() * (window.innerHeight - 100) + "px";
+
+      document.addEventListener('mousemove', function (event) {
+        const objectRect = testObject.getBoundingClientRect();
+
+        // Calculate the distance between the cursor and the test object
+        var distance = Math.sqrt(
+          Math.pow(event.clientX - (objectRect.left + objectRect.width / 2), 2) +
+          Math.pow(event.clientY - (objectRect.top + objectRect.height / 2), 2)
+        );
+
+        // Adjust the volume based on the distance from the test object
+        const maxDistance = Math.sqrt(
+          Math.pow(window.innerWidth, 2) +
+          Math.pow(window.innerHeight, 2)
+        );
+
+        // Adjust the volume based on the distance from the test object using an exponential function
+        var volume = Math.pow(1 - (distance / maxDistance), 3); // Squaring the term for emphasis
+        audio.volume = volume > 0 ? volume : 0;
+
+        // Change cursor to pointer when hovering over the test object
+        testObject.style.cursor = distance < 50 ? "pointer" : "default";
+      });
+    }
+
+
+    function stopMusic() {
+      
+
+      const endTime = performance.now();
+      const elapsedTime = (endTime - startTime) / 1000; // Convert to seconds
+      var mooScore = calculateScore(elapsedTime); 
+      var totalScore = clickerScore + mooScore;
+      /* alert("Cow found! Your score: " + mooScore); */
+
+      //redirect to result.html with the score
+      window.location.href = 'result.html?score=' + totalScore;//passing the score as a query parameter
+
+      // Remove the mousemove event listener after the game ends
+      document.removeEventListener('mousemove', handleMouseMove);
+    }
+
+    function calculateScore(elapsedTime) {
+      // Example scoring algorithm: Inverse of the elapsed time
+      return Math.round(1000 / elapsedTime);
+    }
+
+    
+  </script>
+</body>
+
+</html>

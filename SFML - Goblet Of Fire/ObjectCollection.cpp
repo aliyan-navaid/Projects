@@ -1,7 +1,13 @@
 #include "ObjectCollection.h"
+#include <iostream>
 
 void ObjectCollection::Add(std::shared_ptr<Object> object) {
 	newObjects.push_back(object);
+}
+
+Object* ObjectCollection::get(int index)
+{
+	return objects[index].get();
 }
 
 void ObjectCollection::update(float dt) {

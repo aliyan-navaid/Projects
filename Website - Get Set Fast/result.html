@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #212121 0%, #000 100%);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+        }
+
+        .result-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .score {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #easter {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            color: black;
+        }
+
+        #easter:hover {
+            color: rgb(54, 50, 50);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="result-container">
+        <h1>Total Score</h1>
+        <div class="score" id="scoreDisplay"></div>
+    </div>
+
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        var scoreParam = getParameterByName('score');
+        var scoreDisplay = document.getElementById('scoreDisplay');
+        scoreDisplay.textContent = scoreParam;
+    </script>
+    <h3 id="easter">Left leads to Illuminati's realm </h3>
+</body>
+
+</html>

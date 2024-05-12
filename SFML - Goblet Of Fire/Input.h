@@ -15,7 +15,8 @@ public:
 		Up = 3,
 		Down = 4,
 		ESC = 5,
-		MouseLeft = 6
+		MouseLeft = 6,
+		F = 7
 	};
 
 	bool isKeyPressed(Key keycode);
