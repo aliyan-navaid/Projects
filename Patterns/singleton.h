@@ -18,6 +18,6 @@ namespace DP
             No Object i.e, no need to disable CConstructor
             and / or Operator=() 
         */
-        Singleton() {}
+        Singleton() = default;
     };
 }

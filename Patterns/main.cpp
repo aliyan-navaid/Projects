@@ -3,12 +3,17 @@
 class Foo : public DP::Singleton<Foo> {
     public:
         void doSomething() {
-            std::cout << "Did Something...\n";
+            std::cout << "Foo Something...\n";
         }
     private:
-        Foo() {};
+        Foo() {
+            std::cout << "Foo Created...\n";
+        };
+
         Foo(const Foo&) = delete;
-        Foo operator=(const Foo&) = delete;
+        Foo(Foo&&) = delete;    
+        void operator=(const Foo&) = delete;
+        void operator=(Foo&&) = delete;
 
         friend class DP::Singleton<Foo>;
 };
